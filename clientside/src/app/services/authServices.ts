@@ -51,6 +51,20 @@ export const loginUser = async (email: string, password: string)=>{
 
 
 
+};
+
+
+
+export const FetchSession = async ()=>{
+  try{
+    const response = await axios.get(`/`);
+    console.log(response)
+    return response.data;
+  }catch (error){
+    console.error('Error fetching session:', error);
+    return null
+  }
+
 }
 
 
