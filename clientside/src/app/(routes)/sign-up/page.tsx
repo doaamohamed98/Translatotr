@@ -8,6 +8,7 @@ import Button from '@/component/Button';
 import Link from 'next/link';
 import { createUser } from '@/app/services/authServices';
 
+
 interface FormData {
   username: string;
   email: string;
@@ -20,13 +21,13 @@ const Page: NextPage <FormData> = ({}) => {
     resolver:yupResolver(RegistersSchema),
   });
 
-  const onSubmit = async (userData:FormData) => {
-    try{
-      const res = await createUser(userData);
-      console.log(`Registration successful`,res)
-    }catch{
-      console.log(`Registration failed. Please try again`)
-    }
+  const onSubmit = async (userData: FormData) => {
+   try{
+  const data = await createUser(userData);
+  console.log(`Registration successful`,userData,data)
+}catch{
+  console.log(`Registration failed. Please try again`)
+}
 
   }
  
@@ -72,3 +73,4 @@ const Page: NextPage <FormData> = ({}) => {
 }
 
 export default Page
+
