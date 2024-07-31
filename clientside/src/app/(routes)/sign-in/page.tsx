@@ -7,13 +7,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { NextPage } from 'next'
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 interface LoginData {
   email:string,
   password:string,
 };
-
-
 
 const Page: NextPage<LoginData> = ({}) => {
 
@@ -23,14 +22,19 @@ const Page: NextPage<LoginData> = ({}) => {
 
   const onSubmit= async (Data:LoginData)=>{
     try{
-      const res = await loginUser(Data.email , Data.password)
-      console.log(res,Data)
-    }catch(error){
-      console.log(error)
+      const data = await loginUser(Data.email ,Data.password);
+      console.log("Login =>",data);
+      
+      if(!data?.success){
+        toast.error("Invalid email or password")
+      } else{
+        toast.success("Login is successful")
+      }
 
+    }catch(error){
+      console.log("Login failed. Please try again",error)
     }
   }
-
 
 
   return <>
@@ -45,13 +49,11 @@ const Page: NextPage<LoginData> = ({}) => {
       <div>
         <input  {...login("email")}  type='email' placeholder='Enter your Email' title='email'/>
         {errors.email && <span><ErrorMessage message={errors.email.message}/></span>}
-        
       </div>
 
       <div>
         <input  {...login("password")}  type='password' placeholder='Enter your Email' title='password'/>
         {errors.password && <span><ErrorMessage message={errors.password.message}/></span>}
-
       </div>
 
       <Button text='sign-in' type='submit'/>

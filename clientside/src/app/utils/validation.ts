@@ -10,6 +10,6 @@ export const RegistersSchema = yup.object().shape({
 
 
 export const LoginSchema = yup.object().shape({
-    email:yup.string().trim().required('Email is required'),
+    email:yup.string().trim().required('Email is required').email(`Invalid email or password`),
     password:yup.string().trim().required("Password is required'"),
 })

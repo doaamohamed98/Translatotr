@@ -7,6 +7,8 @@ import ErrorMessage from '@/component/ErrorMassage';
 import Button from '@/component/Button';
 import Link from 'next/link';
 import { createUser } from '@/app/services/authServices';
+import { toast } from 'react-toastify';
+
 
 
 interface FormData {
@@ -17,14 +19,17 @@ interface FormData {
 
 
 const Page: NextPage <FormData> = ({}) => {
-  const { register, handleSubmit, formState: { errors } ,setError } = useForm<FormData>({
+
+  const { register, handleSubmit, formState: { errors } ,setError} = useForm<FormData>({
     resolver:yupResolver(RegistersSchema),
   });
 
   const onSubmit = async (userData: FormData) => {
+   
    try{
   const data = await createUser(userData);
-  console.log(`Registration successful`,userData)
+  console.log(`Registration successful`,userData);
+  toast.success("successful to Create account");
   return data
 
    }catch (error: any){
@@ -33,15 +38,12 @@ const Page: NextPage <FormData> = ({}) => {
       type: 'manual',
       message: 'User already exists'
     });
-
-
-
-
   }else{
-    console.log(`Registration failed. Please try again`)
+    // console.log(`Registration failed. Please try again`)
+    toast.error(`Registration failed. Please try again`)
   }
   
-                      }
+      }
 
      }
  
