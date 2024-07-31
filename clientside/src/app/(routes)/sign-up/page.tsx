@@ -20,7 +20,7 @@ interface FormData {
 
 const Page: NextPage <FormData> = ({}) => {
 
-  const { register, handleSubmit, formState: { errors } ,setError} = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors } ,setError , reset} = useForm<FormData>({
     resolver:yupResolver(RegistersSchema),
   });
 
@@ -29,7 +29,8 @@ const Page: NextPage <FormData> = ({}) => {
    try{
   const data = await createUser(userData);
   console.log(`Registration successful`,userData);
-  toast.success("successful to Create account");
+   toast.success("successful to Create account");
+   reset()
   return data
 
    }catch (error: any){

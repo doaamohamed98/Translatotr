@@ -16,7 +16,7 @@ interface LoginData {
 
 const Page: NextPage<LoginData> = ({}) => {
 
-  const { register: login, handleSubmit, formState: { errors } ,setError } = useForm<LoginData>({
+  const { register: login, handleSubmit, formState: { errors } ,reset} = useForm<LoginData>({
     resolver:yupResolver(LoginSchema),
   });
 
@@ -26,9 +26,12 @@ const Page: NextPage<LoginData> = ({}) => {
       console.log("Login =>",data);
       
       if(!data?.success){
-        toast.error("Invalid email or password")
+        toast.error("Invalid email or password");
       } else{
-        toast.success("Login is successful")
+        toast.success("Login is successful");
+        reset()
+
+
       }
 
     }catch(error){
@@ -52,7 +55,7 @@ const Page: NextPage<LoginData> = ({}) => {
       </div>
 
       <div>
-        <input  {...login("password")}  type='password' placeholder='Enter your Email' title='password'/>
+        <input  {...login("password")}  type='password' placeholder='Enter your password' title='password'/>
         {errors.password && <span><ErrorMessage message={errors.password.message}/></span>}
       </div>
 
