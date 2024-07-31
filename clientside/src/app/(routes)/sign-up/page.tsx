@@ -17,7 +17,7 @@ interface FormData {
 
 
 const Page: NextPage <FormData> = ({}) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors } ,setError } = useForm<FormData>({
     resolver:yupResolver(RegistersSchema),
   });
 
@@ -25,8 +25,18 @@ const Page: NextPage <FormData> = ({}) => {
    try{
   const data = await createUser(userData);
   console.log(`Registration successful`,userData,data)
-}catch{
-  console.log(`Registration failed. Please try again`)
+}catch (error: any){
+  if(error.message === 'User already exists'){
+    setError('email', {
+      type: 'manual',
+      message: 'User already exists'
+    });
+
+
+  }else{
+    console.log(`Registration failed. Please try again`)
+  }
+  
 }
 
   }
@@ -61,12 +71,6 @@ const Page: NextPage <FormData> = ({}) => {
     </div>
 
   </div>
-
-
-
-
-
-
 
 
    </>
