@@ -8,6 +8,8 @@ interface UserData {
   password: string;
 }
 
+
+
 let usersDatabase: UserData[] = [];
 
 export const createUser = async (userData: UserData) => {
@@ -22,13 +24,25 @@ export const createUser = async (userData: UserData) => {
     let newUser = { ...userData, id: usersDatabase.length + 1 };
     usersDatabase.push(newUser);
 
-    const response = await axios.post(`api/register`,userData) ;
-    console.log(`User registration:`,usersDatabase,response.data);
-    return response.data;
+    const req = await axios.post(`/sign-up`,userData) ;
+    console.log(`User registration:`,req.status);
+    return req.status;
   } catch (error) {
     throw new Error('User registration failed');
   }
 };
 
+export const loginUser = async (email: string, password: string)=>{
 
+  try{
+    const req = await axios.post(``,{email,password})
+   
+
+  }catch{
+
+  }
+
+
+
+}
 

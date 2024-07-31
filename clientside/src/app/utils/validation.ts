@@ -7,3 +7,9 @@ export const RegistersSchema = yup.object().shape({
     email:yup.string().matches(emailRegex, 'Invalid email').required('Email is required'),
     password:yup.string().trim().min(8,'Password must be at least 8 characters long').required('Password is required'),
 })
+
+
+export const LoginSchema = yup.object().shape({
+    email:yup.string().trim().required('Email is required'),
+    password:yup.string().trim().required("Password is required'"),
+})

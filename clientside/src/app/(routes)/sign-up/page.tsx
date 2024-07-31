@@ -24,8 +24,10 @@ const Page: NextPage <FormData> = ({}) => {
   const onSubmit = async (userData: FormData) => {
    try{
   const data = await createUser(userData);
-  console.log(`Registration successful`,userData,data)
-}catch (error: any){
+  console.log(`Registration successful`,userData)
+  return data
+
+   }catch (error: any){
   if(error.message === 'User already exists'){
     setError('email', {
       type: 'manual',
@@ -33,13 +35,15 @@ const Page: NextPage <FormData> = ({}) => {
     });
 
 
+
+
   }else{
     console.log(`Registration failed. Please try again`)
   }
   
-}
+                      }
 
-  }
+     }
  
 
   return <>
