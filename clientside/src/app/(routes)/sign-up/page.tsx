@@ -55,7 +55,7 @@ const Page: NextPage <FormData> = ({}) => {
     <h2> Create an account ...</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
 
-      <div>
+             <div>
                 <input {...register('username')} placeholder='Enter name' type='text'/>
                 {errors.username && <span><ErrorMessage message={errors.username.message}/></span>}
             </div>

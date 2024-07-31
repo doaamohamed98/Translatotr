@@ -5,12 +5,13 @@
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+    text-transform: capitalize;
 }
 
 input{
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
+    padding: 10px ;
+    margin: 5px ;
     border: 2px solid gray;
     outline: none;
     border-radius: 10px;
@@ -26,4 +27,18 @@ span{
     display: flex;
     align-items: center;
     justify-content: start;
+}
+
+a{
+   text-decoration: none;
+   color: blue;
+}
+
+button{
+    background-color: #3180d9;
+   border: none;
+   padding: 10px;
+   color: white;
+   font-weight: 600;
+   border-radius: 10px;
 }
