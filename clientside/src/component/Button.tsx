@@ -1,6 +1,5 @@
 "use client";
 import { NextPage } from 'next'
-
 interface Props {
     text:string , type:string
 }

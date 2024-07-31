@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.0",
     "@hookform/resolvers": "^3.9.0",
+    "antd": "^5.19.4",
     "axios": "^1.7.2",
     "next": "14.2.5",
     "react": "^18",
@@ -25,6 +27,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "sass": "^1.77.8",
     "typescript": "^5"
   }
 }
